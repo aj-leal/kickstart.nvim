@@ -91,7 +91,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -102,7 +102,13 @@ vim.g.have_nerd_font = false
 vim.o.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.o.relativenumber = true
+vim.o.relativenumber = true
+
+-- set tab behaviors
+vim.o.expandtab = true
+vim.o.shiftwidth = 4
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
@@ -159,7 +165,7 @@ vim.o.inccommand = 'split'
 vim.o.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.o.scrolloff = 10
+vim.o.scrolloff = 6
 
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
@@ -168,6 +174,13 @@ vim.o.confirm = true
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
+vim.keymap.set('n', '<leader>la', ':Lazy<CR>', { desc = 'Keymap to Open Lazy modal' })
+vim.keymap.set('n', '<leader>ma', ':Mason<CR>', { desc = 'Keymap to Open Mason modal' })
+vim.keymap.set('n', '<leader>ee', ':q<CR>', { desc = '[ee]xit neovim - no save' })
+vim.keymap.set('n', '<leader>ww', ':w<CR>', { desc = '[ww]rite to disk the changes' })
+vim.keymap.set('n', '<leader>ew', ':q!<CR>', { desc = '[e]xit [w]ithout writing to disk' })
+vim.keymap.set('n', '<leader>wq', ':wq<CR>', { desc = '[w]rite then [q]uit neovim' })
+vim.keymap.set({ 'i', 'v' }, 'jj', '<Esc>', { silent = true, desc = 'Exit Insert mode' })
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
