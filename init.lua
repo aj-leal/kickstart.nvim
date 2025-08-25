@@ -174,13 +174,15 @@ vim.o.confirm = true
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
-vim.keymap.set('n', '<leader>la', ':Lazy<CR>', { desc = 'Keymap to Open Lazy modal' })
+vim.keymap.set('n', '<leader>la', ':Lazy<CR>', { desc = 'Keymap to Open [La]zy modal' })
+vim.keymap.set('n', '<leader>lu', ':Lazy<CR>', { desc = 'Keymap for [L]azy plugin [U]pdate' })
 vim.keymap.set('n', '<leader>ma', ':Mason<CR>', { desc = 'Keymap to Open Mason modal' })
 vim.keymap.set('n', '<leader>ee', ':q<CR>', { desc = '[ee]xit neovim - no save' })
 vim.keymap.set('n', '<leader>ww', ':w<CR>', { desc = '[ww]rite to disk the changes' })
 vim.keymap.set('n', '<leader>ew', ':q!<CR>', { desc = '[e]xit [w]ithout writing to disk' })
 vim.keymap.set('n', '<leader>wq', ':wq<CR>', { desc = '[w]rite then [q]uit neovim' })
 vim.keymap.set({ 'i', 'v' }, 'jj', '<Esc>', { silent = true, desc = 'Exit Insert mode' })
+vim.keymap.set({ 'i', 'v' }, 'jk', '<Esc>', { silent = true, desc = 'Exit Insert mode' })
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
@@ -358,6 +360,7 @@ require('lazy').setup({
       -- Document existing key chains
       spec = {
         { '<leader>s', group = '[S]earch' },
+        { '<leader>l', group = '[L]azy related commands' },
         { '<leader>t', group = '[T]oggle' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       },
