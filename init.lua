@@ -90,7 +90,19 @@ P.S. You can delete this when you're done too. It's your config now! :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
---- set tab behaviors
+-- Set tab behaviors
+
+-- Filetype-specific tab settings
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'json' },
+  callback = function()
+    vim.opt_local.tabstop = 4 -- A TAB character looks like 4 spaces
+    vim.opt_local.shiftwidth = 4 -- Indents use 4 spaces
+    vim.opt_local.expandtab = true -- Convert TAB to spaces
+    vim.opt_local.softtabstop = 4
+  end,
+})
+
 -- vim.o.expandtab = true
 -- vim.o.shiftwidth = 4
 -- vim.o.tabstop = 4
@@ -852,6 +864,8 @@ require('lazy').setup({
         --
         -- See :h blink-cmp-config-keymap for defining your own keymap
         preset = 'default',
+        ['<CR>'] = { 'accept', 'fallback' },
+        ['<C-y>'] = {},
 
         -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
@@ -866,7 +880,14 @@ require('lazy').setup({
       completion = {
         -- By default, you may press `<c-space>` to show the documentation.
         -- Optionally, set `auto_show = true` to show the documentation after a delay.
-        documentation = { auto_show = false, auto_show_delay_ms = 500 },
+        documentation = {
+          auto_show = true,
+          auto_show_delay_ms = 200,
+          border = 'rounded',
+          filter = function(item)
+            return item.source_name == 'luasnip'
+          end,
+        },
       },
 
       sources = {
