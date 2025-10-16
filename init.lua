@@ -466,6 +466,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+      vim.keymap.set('n', '<leader>em', ':Emoji<CR>', { desc = 'Insert [em]oji' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
@@ -839,6 +840,8 @@ require('lazy').setup({
         opts = {},
       },
       'folke/lazydev.nvim',
+      'allaman/emoji.nvim',
+      'saghen/blink.compat',
     },
     --- @module 'blink.cmp'
     --- @type blink.cmp.Config
@@ -893,9 +896,21 @@ require('lazy').setup({
       },
 
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'lazydev' },
+        default = { 'lsp', 'path', 'snippets', 'lazydev', 'emoji' },
         providers = {
           lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
+          emoji = {
+            name = 'emoji',
+            module = 'blink.compat.source',
+            -- overwrite kind of suggestion
+            transform_items = function(_ctx, items)
+              local kind = require('blink.cmp.types').CompletionItemKind.Text
+              for i = 1, #items do
+                items[i].kind = kind
+              end
+              return items
+            end,
+          },
         },
       },
 
