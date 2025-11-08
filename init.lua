@@ -833,11 +833,39 @@ require('lazy').setup({
           --    https://github.com/rafamadriz/friendly-snippets
           {
             'rafamadriz/friendly-snippets',
-            config = function()
-              require('luasnip.loaders.from_vscode').lazy_load()
-            end,
+            --config = function()
+            --  require('luasnip.loaders.from_vscode').lazy_load()
+            --end,
           },
         },
+        config = function()
+          require('luasnip.loaders.from_vscode').lazy_load()
+
+          local ls = require 'luasnip'
+          local s = ls.snippet
+          local t = ls.text_node
+          local i = ls.insert_node
+
+          local react_div_snippet = {
+            s({
+              trig = 'div%.',
+              name = 'div with class',
+              dscr = 'Div tag with an empty class attribute for jsx,tsx',
+            }, {
+              t { '<div className="' },
+              i(1),
+              t { '"></div>' },
+              --t { '<div className="', '' },
+              --i(1, ''),
+              --t { '">', '' },
+              --i(2, ''),
+              --t { '</div>', '' },
+            }),
+          }
+
+          ls.add_snippets('javascriptreact', react_div_snippet)
+          ls.add_snippets('typescriptreact', react_div_snippet)
+        end,
         opts = {},
       },
       'folke/lazydev.nvim',
@@ -869,9 +897,9 @@ require('lazy').setup({
         -- <c-k>: Toggle signature help
         --
         -- See :h blink-cmp-config-keymap for defining your own keymap
-        preset = 'default',
-        ['<CR>'] = { 'accept', 'fallback' },
-        ['<C-y>'] = {},
+        preset = 'enter', --'default',
+        --['<CR>'] = { 'accept', 'fallback' },
+        --['<C-y>'] = {},
 
         -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
