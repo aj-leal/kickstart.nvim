@@ -861,6 +861,15 @@ require('lazy').setup({
               --i(2, ''),
               --t { '</div>', '' },
             }),
+            s({
+              trig = 'p%.',
+              name = 'p tag with class',
+              dscr = 'P tag with an empty class attribute for jsx,tsx',
+            }, {
+              t { '<p className="' },
+              i(1),
+              t { '"></p>' },
+            }),
           }
 
           ls.add_snippets('javascriptreact', react_div_snippet)
