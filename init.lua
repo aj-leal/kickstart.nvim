@@ -870,6 +870,15 @@ require('lazy').setup({
               i(1),
               t { '"></p>' },
             }),
+            s({
+              trig = 'jc',
+              name = 'js multi-line comment',
+              dscr = 'JS multi-line comment shorthand',
+            }, {
+              t { '{/* ' },
+              i(1),
+              t { ' */}' },
+            }),
           }
 
           ls.add_snippets('javascriptreact', react_div_snippet)
