@@ -915,7 +915,7 @@ require('lazy').setup({
         -- <c-k>: Toggle signature help
         --
         -- See :h blink-cmp-config-keymap for defining your own keymap
-        preset = 'enter', --'default',
+        preset = 'default', --'enter',
         --['<CR>'] = { 'accept', 'fallback' },
         --['<C-y>'] = {},
 
