@@ -883,6 +883,19 @@ require('lazy').setup({
 
           ls.add_snippets('javascriptreact', react_div_snippet)
           ls.add_snippets('typescriptreact', react_div_snippet)
+          local error_snippet = {
+            s({
+              trig = '%err',
+              name = 'server error snippet',
+              dscr = 'Snippet to use in catch portion to indicate server error',
+            }, {
+              t { 'console.log(err);' },
+              t { 'res.status(500).json({message: "Server error. "});' },
+            }),
+          }
+
+          ls.add_snippets('javascript', error_snippet)
+          ls.add_snippets('typescript', error_snippet)
         end,
         opts = {},
       },
