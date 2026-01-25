@@ -889,7 +889,7 @@ require('lazy').setup({
               name = 'server error snippet',
               dscr = 'Snippet to use in catch portion to indicate server error',
             }, {
-              t { 'console.log(err);' },
+              t { 'console.log(err);', '' },
               t { 'res.status(500).json({message: "Server error. "});' },
             }),
           }
