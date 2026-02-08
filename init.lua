@@ -197,6 +197,7 @@ vim.keymap.set({ 'i', 'v' }, 'jj', '<Esc>', { silent = true, desc = 'Exit Insert
 vim.keymap.set({ 'i', 'v' }, 'jk', '<Esc>', { silent = true, desc = 'Exit Insert mode' })
 vim.keymap.set('n', '<C-p>', ':bp<CR>', { desc = 'Switch to the previous open buffer' })
 vim.keymap.set('n', '<C-n>', ':bn<CR>', { desc = 'Switch to the next open buffer' })
+vim.keymap.set('n', '<C-d>', ':bd<CR>', { desc = 'Close current buffer' })
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
