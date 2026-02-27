@@ -94,7 +94,7 @@ vim.g.maplocalleader = ' '
 
 -- Filetype-specific tab settings
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'json' },
+  pattern = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'json', 'go', 'gohtmltmpl' },
   callback = function()
     vim.opt_local.tabstop = 4 -- A TAB character looks like 4 spaces
     vim.opt_local.shiftwidth = 4 -- Indents use 4 spaces
